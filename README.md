@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ENGLISH <img width="25px" src="./assets/logo.png" /> JANALA
 
 ---
@@ -114,3 +115,6 @@ For More >> you can explore this implementation 👉 [https://codepen.io/Ferdous
 ---
 Bonus : How to create Private Repository for next assignments
 ## Test Repo - :  https://classroom.github.com/a/Fgjib-lr
+=======
+# English-Janala
+>>>>>>> a00fa818c4fb4428b04e7c30ca0f4fe363d84e60
