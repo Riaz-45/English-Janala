@@ -6,12 +6,24 @@ const loadLessons = () => {
     }); 
 };
 
+const removeActive = () => {
+    const lessonButtons = document.querySelectorAll(".lesson-btn");
+    // console.log(lessonButtons);
+    lessonButtons.forEach((btn) => {
+        btn.classList.remove("active");
+    });
+};
+
 const loadLevelWord = (id) => {
     // console.log(id);
     const url = `https://openapi.programming-hero.com/api/level/${id}`;
     fetch(url)
     .then(res => res.json())
     .then(data => {
+        removeActive();
+        const clickBtn = document.getElementById(`lesson-btn-${id}`);
+        // console.log(clickBtn);
+        clickBtn.classList.add("active");
         displayLevelWord(data.data);
     });
 };
@@ -49,7 +61,7 @@ const displayLevelWord = (words) => {
             <p class="font-english">meaning /pronounciation</p>
             <div class="font-bangla font-semibold text-2xl text-[#18181B]/80">"${word.meaning ? word.meaning : "অর্থ পাওয়া যায়নি "} / ${word.pronunciation ? word.pronunciation : "pronunciation পাওয়া যায়নি"}"</div>
             <div class="flex justify-between items-center">
-                <button class="btn bg-[#1A91FF]/10 text-[#374957] border-none rounded-lg"><i class="fa-solid fa-circle-info"></i></button>
+                <button onclick="my_modal_5.showModal()" class="btn bg-[#1A91FF]/10 text-[#374957] border-none rounded-lg"><i class="fa-solid fa-circle-info"></i></button>
                 <button class="btn bg-[#1A91FF]/10 text-[#374957] border-none rounded-lg"><i class="fa-solid fa-volume"></i></button>
             </div>
         </div>
@@ -70,7 +82,7 @@ const displayLessons = (lessons) => {
         console.log(lesson);
         const btnDiv = document.createElement("div");
         btnDiv.innerHTML = `
-            <button onclick = "loadLevelWord(${lesson.level_no})" class="btn btn-outline border-2 btn-primary"><i class="fa-solid fa-book-open"></i>Lesson-${lesson.level_no}</button>
+            <button id="lesson-btn-${lesson.level_no}" onclick = "loadLevelWord(${lesson.level_no})" class="btn btn-outline border-2 btn-primary lesson-btn"><i class="fa-solid fa-book-open"></i>Lesson-${lesson.level_no}</button>
         `;
 
         levelContainer.append(btnDiv);
