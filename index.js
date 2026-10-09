@@ -63,7 +63,7 @@ const displayLevelWord = (words) => {
             <div class="font-bangla font-semibold text-2xl text-[#18181B]/80">"${word.meaning ? word.meaning : "অর্থ পাওয়া যায়নি "} / ${word.pronunciation ? word.pronunciation : "pronunciation পাওয়া যায়নি"}"</div>
             <div class="flex justify-between items-center">
                 <button onclick="loadWordDetails(${word.id})" class="btn bg-[#1A91FF]/10 text-[#374957] border-none rounded-lg"><i class="fa-solid fa-circle-info"></i></button>
-                <button class="btn bg-[#1A91FF]/10 text-[#374957] border-none rounded-lg"><i class="fa-solid fa-volume"></i></button>
+                <button onclick="pronounceWord('${word.word}')" class="btn bg-[#1A91FF]/10 text-[#374957] border-none rounded-lg"><i class="fa-solid fa-volume"></i></button>
             </div>
         </div>
         `;
@@ -127,6 +127,12 @@ const displayWordDetails = (word) => {
     `;
     document.getElementById("word_modal").showModal();
 };
+
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
 
 const manageLoading = (status) => {
     if(status === true){
